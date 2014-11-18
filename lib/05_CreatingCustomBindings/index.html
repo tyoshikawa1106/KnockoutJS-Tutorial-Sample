@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Creating custom bindings</title>
+        <!-- jQuery -->
+        <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="../bootstrapSF1/dist/css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../bootstrapSF1/dist/css/docs.min.css"></link>
+        <script type="text/javascript" src="../bootstrapSF1/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../bootstrapSF1/js/docs.js"></script>
+        <!-- knockout -->
+        <script type="text/javascript" src="../js/knockout-3.2.0.js"></script>
+        <!-- app js-->
+        <script type="text/javascript" src="js/controller.js"></script>
+        <link rel="stylesheet" href="css/style.css"></link>
+    </head>
+    <body>
+        <div class="page-header page-header-anchor">
+            <h1>- Kockout App -</h1>
+        </div>
+        <div class="padding">
+            <h3 data-bind="text: question"></h3>
+            <p>Please distribute <b data-bind="text: pointsBudget"></b> points between the following options.</p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Importance</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: answers">
+                    <tr>
+                        <td data-bind="text: answerText"></td>
+                        <td><select data-bind="options: [1,2,3,4,5], value: points"></select></td>
+                    </tr>    
+                </tbody>
+            </table>
+
+            <h3 data-bind="visible: pointsUsed() > pointsBudget">You've used too many points! Please remove some.</h3>
+            <p>You've got <b data-bind="text: pointsBudget - pointsUsed()"></b> points left to use.</p>
+            <button class="btn" data-bind="enable: pointsUsed() <= pointsBudget, click: save">Finished</button>
+        </div>
+    </body>
+</html>

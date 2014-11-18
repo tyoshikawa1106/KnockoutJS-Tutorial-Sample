@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Loading and saving data</title>
+        <!-- jQuery -->
+        <script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="../bootstrapSF1/dist/css/bootstrap.css"></link>
+        <link rel="stylesheet" href="../bootstrapSF1/dist/css/docs.min.css"></link>
+        <script type="text/javascript" src="../bootstrapSF1/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../bootstrapSF1/js/docs.js"></script>
+        <!-- knockout -->
+        <script type="text/javascript" src="../js/knockout-3.2.0.js"></script>
+        <!-- app js-->
+        <script type="text/javascript" src="js/controller.js"></script>
+        <link rel="stylesheet" href="css/style.css"></link>
+    </head>
+    <body>
+        <div class="page-header page-header-anchor">
+            <h1>- Kockout App -</h1>
+        </div>
+        <div class="padding">
+            <h3>Tasks</h3>
+
+            <form data-bind="submit: addTask">
+                Add task: <input data-bind="value: newTaskText" placeholder="What needs to be done?" />
+                <button class="btn" type="submit">Add</button>
+            </form>
+
+            <ul class="list-style-none" data-bind="foreach: tasks, visible: tasks().length > 0">
+                <li>
+                    <input type="checkbox" data-bind="checked: isDone" />
+                    <input data-bind="value: title, disable: isDone" />
+                    <a href="#" data-bind="click: $parent.removeTask">Delete</a>
+                </li> 
+            </ul>
+
+            You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
+            <span data-bind="visible: incompleteTasks().length == 0"> - it's beer time!</span>
+        </div>
+    </body>
+</html>
